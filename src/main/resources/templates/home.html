@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Covid-19 Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<body>
+
+<h1>Covid-19 Tracker Application</h1>
+<p>This application lists the current number of cases reported across the globe</p>
+
+<h1 th:text="${totalReportedCases}"> <span class="badge bg-secondary">New</span></h1>
+<p>Total cases reported as of today</p>
+
+<h3 th:text="${totalNewCases}"> <span class="badge bg-secondary">New</span></h3>
+<p>Total new cases reported since the previous day</p>
+
+<table class="table">
+    <tr>
+        <th>Country</th>
+        <th>State</th>
+        <th>Total Cases Reported</th>
+        <th>Changes since last day</th>
+    </tr>
+    <tr th:each = "locationStat : ${locationStats}">
+        <td th:text="${locationStat.country}"></td>
+        <td th:text="${locationStat.state}"></td>
+        <td th:text="${locationStat.latestTotalCases}">0</td>
+        <td th:text="${locationStat.diffFromPrevDay}">0</td>
+    </tr>
+</table>
+
+</body>
+
+</html>
